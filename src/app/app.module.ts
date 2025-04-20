@@ -12,6 +12,14 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { GeneratorComponent } from './generator/generator.component';
+import {MatCard} from '@angular/material/card';
+import {MatFormField} from '@angular/material/form-field';
+import {MatSelect} from '@angular/material/select';
+import {MatOption} from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatLabel} from '@angular/material/form-field';
+import {MatInput} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -29,7 +37,15 @@ import { GeneratorComponent } from './generator/generator.component';
     MatIcon,
     MatToolbarModule,
     BrowserAnimationsModule,
-    MatFabButton
+    MatFabButton,
+    MatCard,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatIconModule,
+    MatButtonModule,
+    MatLabel,
+    MatInput
   ],
   providers: [
     provideClientHydration(withEventReplay())
