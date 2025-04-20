@@ -1,16 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatFabButton, MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderMenuComponent } from './header-menu/header-menu.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { GeneratorComponent } from './generator/generator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderMenuComponent,
+    FooterComponent,
+    HomeComponent,
+    GeneratorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbar,
+    MatIconButton,
+    MatIcon,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    MatFabButton
   ],
   providers: [
     provideClientHydration(withEventReplay())
