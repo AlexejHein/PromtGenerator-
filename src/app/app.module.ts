@@ -12,7 +12,7 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { GeneratorComponent } from './generator/generator.component';
-import {MatCard} from '@angular/material/card';
+import {MatCard, MatCardHeader} from '@angular/material/card';
 import {MatFormField} from '@angular/material/form-field';
 import {MatSelect} from '@angular/material/select';
 import {MatOption} from '@angular/material/core';
@@ -45,7 +45,8 @@ import {MatInput} from '@angular/material/input';
     MatIconModule,
     MatButtonModule,
     MatLabel,
-    MatInput
+    MatInput,
+    MatCardHeader
   ],
   providers: [
     provideClientHydration(withEventReplay())

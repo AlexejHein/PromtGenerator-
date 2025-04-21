@@ -1,4 +1,7 @@
+<div class="content">
+
 <mat-card>
+  <div class="first-card">
   <mat-form-field appearance="outline">
     <mat-label>Select 1</mat-label>
     <mat-select>
@@ -20,13 +23,30 @@
       <mat-option value="two">Second option</mat-option>
     </mat-select>
   </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Select 4</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div class="second-card">
 
   <mat-form-field appearance="outline" class="example-full-width">
     <mat-label>Leave a comment</mat-label>
     <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
 
-  <button mat-flat-button>Basic</button>
-  <button mat-stroked-button>Basic</button>
+    <div class="buttons">
+
+      <button mat-flat-button>Kopieren</button>
+      <button class="second-button" mat-stroked-button>Exportieren</button>
+
+    </div>
+  </div>
 
 </mat-card>
+</div>
