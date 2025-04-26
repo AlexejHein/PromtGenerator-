@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {FormsModule} from '@angular/forms';
     MatInput,
     MatCardHeader,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinner
   ],
   providers: [
     provideClientHydration(withEventReplay())

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OpenaiService } from '../openai.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-generator',
@@ -11,54 +12,15 @@ export class GeneratorComponent {
 
   selectedType: string = 'text';  // Standardauswahl
   generatedPrompt: string = '';
-  gptResponse: string = '';
+  isLoading: boolean = false; // Für die Ladeanzeige
 
-  // Werte aus den Auswahlfeldern
-  textOptions = {
-    ziel: '',
-    ton: '',
-    rolle: ''
-  };
+  textOptions = { ziel: '', ton: '', rolle: '' };
+  imageOptions = { stil: '', thema: '', licht: '' };
+  codeOptions = { sprache: '', ziel: '', extras: '' };
 
-  imageOptions = {
-    stil: '',
-    thema: '',
-    licht: ''
-  };
+  constructor(private openaiService: OpenaiService, private snackBar: MatSnackBar) {}
 
-  codeOptions = {
-    sprache: '',
-    ziel: '',
-    extras: ''
-  };
-
-  constructor(private openaiService: OpenaiService) {}
-
-  generatePrompt(): void {
-    switch (this.selectedType) {
-      case 'text':
-        this.generatedPrompt = `Schreibe einen ${this.textOptions.ton}en ${this.textOptions.ziel}-Text aus Sicht eines ${this.textOptions.rolle}.`;
-        break;
-      case 'image':
-        this.generatedPrompt = `Erzeuge ein Bild im Stil von ${this.imageOptions.stil}, Thema: ${this.imageOptions.thema}, Lichtstimmung: ${this.imageOptions.licht}.`;
-        break;
-      case 'code':
-        this.generatedPrompt = `Erstelle ein ${this.codeOptions.ziel} in ${this.codeOptions.sprache} mit Fokus auf ${this.codeOptions.extras}.`;
-        break;
-      default:
-        this.generatedPrompt = '';
-        break;
-    }
-    console.log('Generierter Prompt:', this.generatedPrompt);
-  }
-
-  callChatGPT(): void {
-    if (!this.generatedPrompt) {
-      console.warn('Kein Prompt vorhanden');
-      return;
-    }
-
-    // Prompt analysieren für Themenstruktur
+  generatePromptFromBackend(): void {
     const typ = this.selectedType;
     let thema = '';
     let stil = '';
@@ -76,14 +38,29 @@ export class GeneratorComponent {
 
     const requestBody = { thema, stil, typ };
 
+    this.isLoading = true;
+
     this.openaiService.getPromptFromBackend(requestBody).subscribe({
       next: (res) => {
         this.generatedPrompt = res.prompt;
+        this.isLoading = false;
+        this.showSnackBar('Prompt erfolgreich erstellt!', 'success');
       },
       error: (err) => {
         console.error(err);
         this.generatedPrompt = 'Fehler beim Abrufen der Antwort.';
+        this.isLoading = false;
+        this.showSnackBar('Fehler beim Erstellen des Prompts.', 'error');
       }
+    });
+  }
+
+  showSnackBar(message: string, type: 'success' | 'error'): void {
+    this.snackBar.open(message, 'Schließen', {
+      duration: 3000,
+      panelClass: type === 'success' ? 'snackbar-success' : 'snackbar-error',
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     });
   }
 
@@ -102,5 +79,4 @@ export class GeneratorComponent {
     a.click();
     window.URL.revokeObjectURL(url);
   }
-
 }

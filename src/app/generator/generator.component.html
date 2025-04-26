@@ -5,7 +5,7 @@
       <!-- Prompt-Typ Auswahl -->
       <mat-form-field appearance="outline">
         <mat-label>Prompt-Typ</mat-label>
-        <mat-select [(ngModel)]="selectedType" (selectionChange)="generatePrompt()">
+        <mat-select [(ngModel)]="selectedType">
           <mat-option value="text">Text</mat-option>
           <mat-option value="image">Bild</mat-option>
           <mat-option value="code">Code</mat-option>
@@ -16,7 +16,7 @@
       <div *ngIf="selectedType === 'text'">
         <mat-form-field appearance="outline">
           <mat-label>Ziel</mat-label>
-          <mat-select [(ngModel)]="textOptions.ziel" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="textOptions.ziel">
             <mat-option value="blog">Blogartikel</mat-option>
             <mat-option value="social">Social Media Post</mat-option>
             <mat-option value="product">Produktbeschreibung</mat-option>
@@ -25,7 +25,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Ton</mat-label>
-          <mat-select [(ngModel)]="textOptions.ton" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="textOptions.ton">
             <mat-option value="humorvoll">Humorvoll</mat-option>
             <mat-option value="sachlich">Sachlich</mat-option>
             <mat-option value="emotional">Emotional</mat-option>
@@ -34,7 +34,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Rolle</mat-label>
-          <mat-select [(ngModel)]="textOptions.rolle" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="textOptions.rolle">
             <mat-option value="experte">Experte</mat-option>
             <mat-option value="coach">Coach</mat-option>
             <mat-option value="freund">Freund</mat-option>
@@ -46,7 +46,7 @@
       <div *ngIf="selectedType === 'image'">
         <mat-form-field appearance="outline">
           <mat-label>Stil</mat-label>
-          <mat-select [(ngModel)]="imageOptions.stil" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="imageOptions.stil">
             <mat-option value="realistisch">Realistisch</mat-option>
             <mat-option value="anime">Anime</mat-option>
             <mat-option value="cyberpunk">Cyberpunk</mat-option>
@@ -55,7 +55,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Thema</mat-label>
-          <mat-select [(ngModel)]="imageOptions.thema" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="imageOptions.thema">
             <mat-option value="charakter">Charakter</mat-option>
             <mat-option value="landschaft">Landschaft</mat-option>
             <mat-option value="szene">Szene</mat-option>
@@ -64,7 +64,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Licht / Stimmung</mat-label>
-          <mat-select [(ngModel)]="imageOptions.licht" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="imageOptions.licht">
             <mat-option value="goldenhour">Golden Hour</mat-option>
             <mat-option value="duester">Düster</mat-option>
             <mat-option value="neon">Neon</mat-option>
@@ -76,7 +76,7 @@
       <div *ngIf="selectedType === 'code'">
         <mat-form-field appearance="outline">
           <mat-label>Sprache</mat-label>
-          <mat-select [(ngModel)]="codeOptions.sprache" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="codeOptions.sprache">
             <mat-option value="python">Python</mat-option>
             <mat-option value="javascript">JavaScript</mat-option>
             <mat-option value="typescript">TypeScript</mat-option>
@@ -85,7 +85,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Ziel</mat-label>
-          <mat-select [(ngModel)]="codeOptions.ziel" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="codeOptions.ziel">
             <mat-option value="script">Skript</mat-option>
             <mat-option value="webapp">Web-App</mat-option>
             <mat-option value="api">REST-API</mat-option>
@@ -94,7 +94,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Extras</mat-label>
-          <mat-select [(ngModel)]="codeOptions.extras" (selectionChange)="generatePrompt()">
+          <mat-select [(ngModel)]="codeOptions.extras">
             <mat-option value="kommentiert">Mit Kommentaren</mat-option>
             <mat-option value="cleancode">Clean Code</mat-option>
             <mat-option value="tests">Mit Tests</mat-option>
@@ -102,10 +102,20 @@
         </mat-form-field>
       </div>
 
-      <!-- Buttons: Jetzt außerhalb und für alle sichtbar -->
+      <!-- EIN Button zum Prompt generieren -->
       <div class="buttons">
-        <button mat-raised-button color="primary" (click)="generatePrompt()">Prompt generieren</button>
-        <button mat-stroked-button color="accent" (click)="callChatGPT()">Mit ChatGPT testen</button>
+        <button mat-raised-button color="primary" (click)="generatePromptFromBackend()" [disabled]="isLoading">
+          <ng-container *ngIf="isLoading; else normalText">
+            <mat-progress-spinner
+              diameter="24"
+              mode="indeterminate"
+              color="accent"
+              strokeWidth="3"
+              style="margin-right: 8px;">
+            </mat-progress-spinner>
+          </ng-container>
+          <ng-template #normalText>Prompt erstellen</ng-template>
+        </button>
       </div>
 
     </div>
