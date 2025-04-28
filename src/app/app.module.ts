@@ -23,6 +23,8 @@ import {MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     HeaderMenuComponent,
     FooterComponent,
     HomeComponent,
-    GeneratorComponent
+    GeneratorComponent,
+    InfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,11 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     MatCardHeader,
     FormsModule,
     HttpClientModule,
-    MatProgressSpinner
+    MatProgressSpinner,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose
   ],
   providers: [
     provideClientHydration(withEventReplay())
