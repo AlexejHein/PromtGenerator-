@@ -25,6 +25,8 @@ import {FormsModule} from '@angular/forms';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from
     FooterComponent,
     HomeComponent,
     GeneratorComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    PrivacyPolicyComponent,
+    LegalNoticeComponent
   ],
   imports: [
     BrowserModule,
