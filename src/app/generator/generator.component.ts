@@ -13,6 +13,7 @@ export class GeneratorComponent {
   selectedType: string = 'text';  // Standardauswahl
   generatedPrompt: string = '';
   isLoading: boolean = false; // Für die Ladeanzeige
+  customTopic: string = '';
 
   textOptions = { ziel: '', ton: '', rolle: '' };
   imageOptions = { stil: '', thema: '', licht: '' };
@@ -36,7 +37,11 @@ export class GeneratorComponent {
       stil = this.codeOptions.extras || 'einfach';
     }
 
-    const requestBody = { thema, stil, typ };
+    const requestBody = {
+      thema: this.customTopic || thema, // Benutzerdefiniertes Thema vorziehen
+      stil,
+      typ
+    };
 
     this.isLoading = true;
 
