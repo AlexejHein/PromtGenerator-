@@ -109,7 +109,6 @@
         <input matInput [(ngModel)]="customTopic" placeholder="z.B. Nachhaltigkeit, KI für Schulen, Kaffee in der Werbung..." />
       </mat-form-field>
 
-      <!-- EIN Button zum Prompt generieren -->
       <div class="buttons">
         <button mat-raised-button color="primary" (click)="generatePromptFromBackend()" [disabled]="isLoading">
           <ng-container *ngIf="isLoading; else normalText">

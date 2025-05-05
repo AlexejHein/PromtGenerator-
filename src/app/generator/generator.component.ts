@@ -10,9 +10,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class GeneratorComponent {
 
-  selectedType: string = 'text';  // Standardauswahl
+  selectedType: string = 'text';
   generatedPrompt: string = '';
-  isLoading: boolean = false; // Für die Ladeanzeige
+  isLoading: boolean = false;
   customTopic: string = '';
 
   textOptions = { ziel: '', ton: '', rolle: '' };
@@ -38,7 +38,7 @@ export class GeneratorComponent {
     }
 
     const requestBody = {
-      thema: this.customTopic || thema, // Benutzerdefiniertes Thema vorziehen
+      thema: this.customTopic || thema,
       stil,
       typ
     };
