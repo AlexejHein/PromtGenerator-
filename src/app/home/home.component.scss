@@ -18,17 +18,26 @@
       font-weight: 700;
       margin-bottom: 1rem;
       color: #333;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
     }
 
     .intro {
       font-size: 1.2rem;
       margin-bottom: 1rem;
       color: #444;
+      @media (max-width: 600px) {
+        font-size: 1.1rem;
+      }
     }
 
     .features {
       font-size: 1.1rem;
       margin-bottom: 1rem;
+      @media (max-width: 600px) {
+        font-size: 1rem;
+      }
     }
 
     .benefits {
@@ -39,6 +48,9 @@
 
       li {
         margin: 0.5rem 0;
+      }
+      @media (max-width: 600px) {
+        font-size: 1rem;
       }
     }
 
