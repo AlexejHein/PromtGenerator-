@@ -8,6 +8,11 @@ mat-toolbar {
   @media (max-width: 900px){
     flex-direction: column;
   }
+  .row-1{
+    @media(max-width: 900px){
+      display: none;
+    }
+  }
   .row-2{
     display: flex;
     flex-direction: row;
